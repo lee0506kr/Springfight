@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- 우리가 사용할 bean에 대한 설정을 작성하면 된다. -->
+	
+	<!-- bean 태그 이용해서 bean 설정 작성, id, class 속성 작성 
+	id: Spring container에서 bean 구분하는 구분자 역할
+	class : bean을 만들기 위한 참조 클래스
+	
+	-->
+	<bean id = "myCar" class = "di02.Car">
+		
+	</bean>
+
+</beans>

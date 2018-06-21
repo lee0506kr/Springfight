@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<!-- Car 클래스의 객체를 bean으로 등록 -->
+	<!-- <bean id ="myCar" class = "di05.Car"></bean> -->
+
+	<!-- @(annotation)을 이용한 bean 등록 -->
+	<!-- 1. bean을 만들고자 하는 클래스 위에 @Component 작성 2. 스프링 설정파일에 @Component가 달린 클래스의 
+		bean을 만들어라 라고 설정 :component-scan namespace에서 context 설정하고 나서 <context:component-scan> 
+		태그 작성 -->
+	<context:component-scan base-package="di05" />
+
+
+</beans>

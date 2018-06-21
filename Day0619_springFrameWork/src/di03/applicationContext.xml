@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- myCar 라는 이름으로 Car bean 등록 -->
+	<!-- korTire 라는 이름으로 KoreaTire bean 등록 -->
+
+	<!-- <bean id="myCar" class="di03.Car">
+		<property name="tire" ref="chinaTire"></property>
+	</bean> -->
+	
+	
+	<bean id="myCar" class="di03.Car">
+		<constructor-arg ref = "korTire"></constructor-arg>
+	</bean>
+	
+
+	<bean id="korTire" class="di03.KoreaTire">
+	</bean>
+	<bean id="chinaTire" class="di03.ChinaTire">
+	</bean>
+
+	<!-- 의존성 주입(Dependency Injection) -->
+	<!-- 의존성 주입 방법 2가지 .
+	-설정자 (setter)주입 <property> 
+	-생성자(constructor)주입 <constructor-arg> -->
+
+</beans>

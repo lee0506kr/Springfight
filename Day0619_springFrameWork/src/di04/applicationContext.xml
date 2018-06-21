@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.springframework.org/schema/beans">
+
+	<bean class="di04.ConnectionProvider" id="connProvider" />
+
+	<!-- 의존성 주입방법 : setter, 생성자 -->
+
+
+	<!-- <bean id = "studentDao" class = "di04.StudentDao"> -->
+
+
+	<!-- <property name="connectionProvider" ref="connProvider"></property> -->
+
+
+	<!-- </bean> -->
+
+
+
+
+	<bean class="di04.StudentDao" id="studentDao">
+
+		<constructor-arg ref="connProvider" />
+
+	</bean>
+
+</beans>
