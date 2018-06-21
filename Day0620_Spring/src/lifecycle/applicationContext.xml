@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<bean class="lifecycle.StudentDao" id="studentDao" scope="singleton" init-method="init" destroy-method="destory">
+
+		<property ref="connectionProvider" name="connectionProvider" />
+
+	</bean>
+
+	<bean class="lifecycle.ConnectionProvider" id="connectionProvider">
+	</bean>
+
+
+
+</beans>
