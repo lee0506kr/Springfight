@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- 예제 목표 : 스프링 jdbc를 이용한 dao 작성하고 dao를 스플이 컨테이너에 등록해서 사용 스프링 컨테이너에 등록해야 
+		할 bean 목록 1.dao 2.JdbcTemplate(연결,구문객체 생성, 예외처리, 자원관리 등등) 3.DataSource( 연결정보(url,username,password,드라이버 
+		정보),저장) -->
+
+	<!-- DataSource 등록 -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName"
+			value="oracle.jdbc.driver.OracleDriver"></property>
+		<property name="url"
+			value="jdbc:oracle:thin:@localhost:1521:XE"></property>
+		<property name="username" value="lee5656kr"></property>
+		<property name="password" value="qwer4512"></property>
+	</bean>
+	<!-- JDBC Template 등록, dataSource 의존성 주입 -->
+	<bean class="org.springframework.jdbc.core.JdbcTemplate" id="jdbcTemplate">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<!-- StudentDao 등록, JdbcTemplate 의존성 주입 -->
+	<bean class="dao.StudentDao" id="studentDao">
+		<property name="jdbcTemplate" ref="jdbcTemplate" />
+	</bean>
+
+</beans>
+
