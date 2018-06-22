@@ -1,0 +1,18 @@
+MyBatis
+영속성 프레임워크 : DAO 작성을 쉽게 할 수 있도록 도와준다.
+-SQL을 실행코드와 분리해서 쉽게 관리할 수 있도록 도와주는 프레임 워크
+-동적쿼리를 활요한 가변적인 SQL작성을 할 수 있도록 한다.
+
+
+Library
+Mybatis : mybatis
+oracle : ojbc6
+
+작성해야 할 것
+1. 환경설정파일
+	DB접속정보
+	Model 클래스 정보
+	Mapper 정보
+2.	Mapper(sql) : sql문을 실행 코드와 분리하기 위해서 사용
+	CRUD sql을 작성할 수 있도록 태그 제공
+3.	DAO

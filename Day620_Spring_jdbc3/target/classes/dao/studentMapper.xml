@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.studentMapper">
+	<!-- namespace :sql문이 포함될 이름공간, sql문을 구분하기 위해 사용 -->
+	<!-- sql 작성 -->
+
+	<insert id="insertStudent" parameterType="student">
+		INSERT
+		into student
+		values(#{snum},#{sname},#{sgrade})
+	</insert>
+	<update id="updateStudent" parameterType="student">
+		UPDATE student
+		set sname = #{sname},
+		sgrade = #{sgrade}
+		where snum = #{snum}
+
+	</update>
+	<delete id="deleteStudent" parameterType="int">
+		delete
+		from student
+		where snum = #{snum}
+
+	</delete>
+	<select id="selectOne" parameterType="int" resultType="student">
+		select *
+		from student
+		where snum = #{snum}
+	</select>
+	<select id="selectAll" resultType="student">
+		select * from student
+
+	</select>
+
+
+</mapper>
