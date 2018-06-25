@@ -29,10 +29,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from student
 		where snum = #{snum}
 	</select>
-	<select id="selectAll" resultType="student">
+	<select id="selectAll" resultMap="studentMap">
 		select * from student
 
 	</select>
+
+
+	<!-- jdbctemplate에서는 rowMapper, mybatis에서는 resultMap 사용
+		칼럼명과, 모델클래스의 포로퍼터 이름이 다를 때, 결과 매핑을 위해서 사용한다.
+		resultMap type="변환할 타입, 모델" id ="맵의 이름"
+	 -->
+
+	<resultMap type="student" id="studentMap">
+	
+		<result property="snum" column="snum"/>
+		<result property="sname" column="sname"/>
+		<result property="sgrade" column="sgrade"/>
+	
+	</resultMap>
+
+
+
 
 
 </mapper>

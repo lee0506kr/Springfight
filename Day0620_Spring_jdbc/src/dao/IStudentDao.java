@@ -5,6 +5,7 @@ import java.util.Map;
 import model.Student;
 
 public interface IStudentDao {
+	
 	public int insertStudent(Student student);
 
 	public int updateStudent(Student student);
