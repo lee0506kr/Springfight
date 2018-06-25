@@ -21,7 +21,7 @@ public class StudentDao {
 			sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
+		} 
 	}
 
 	public int insertStudent(Student student) {
