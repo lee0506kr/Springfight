@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+<mapper namespace="dao.StudentDao">
+<insert parameterType="map" id="insertStudent"> insert into student (snum,sname,sgrade) values (#{SNUM},#{SNAME},#{SGRADE}) </insert>
+
+<update parameterType="map" id="updateStudent"> update student set sname = #{SNAME}, sgrade = #{SGRADE} where snum = #{SNUM} </update>
+
+<delete parameterType="int" id="deleteStudent"> delete from student where snum = #{SNUM} </delete>
+
+<select parameterType="int" id="selectOne" resultType="map"> select * from student where snum = #{SNUM} </select>
+
+<select id="selectAll" resultType="map"> select * from student </select>
+</mapper>
