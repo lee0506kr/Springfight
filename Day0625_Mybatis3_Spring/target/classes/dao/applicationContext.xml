@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	<!-- 스프링 컨테이너에 등록해야 할 것들 MyBatis로 만든 Dao 등록 MyBatis로 DAO 만들기 위해서 필요한 것 :SqlSession를 
+		만들기 위한 SqlSessionFactory SqlSessionFactory를 bean 으로 등록하기 위해 필요한것 (Mybatis 
+		설정 파일 내용 : DB접속정보, alias, mapper정보) -->
+
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName"
+			value="oracle.jdbc.driver.OracleDriver"></property>
+		<property name="url"
+			value="jdbc:oracle:thin:@localhost:1521:XE"></property>
+		<property name="username" value="lee5656kr"></property>
+		<property name="password" value="qwer4512"></property>
+	</bean>
+
+	<bean id = "SqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref ="dataSource"></property>
+		<property name="typeAliasesPackage" value="model"></property>
+		<property name="mapperLocations" value="classpath:dao/mapper/**/*.xml"></property>
+	</bean>
+	
+	<bean id="studentDao" class="dao.StudentDaoImp">
+		<property name="sqlSessionFactory" ref="SqlSessionFactory"></property>
+	</bean>
+	
+	<bean id = "sqlSession" class ="org.mybatis.spring.SqlSessionTemplate">
+	<constructor-arg ref="SqlSessionFactory"></constructor-arg>
+	</bean>
+	
+
+
+
+</beans>
