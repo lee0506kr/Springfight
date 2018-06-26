@@ -1,0 +1,46 @@
+Dependency 등록
+Spring : core,context,jdbc
+MyBatis : mybatis, mybatis-spring
+oracle : ojdbc
+
+실습 목적:
+MyBatis를 이용해서 만든 DAO를 스프링 컨테이너에 bean으로 등록해서 사용하기
+
+1. bean으로 등록해야 할 목록
+   dataSource : DB접속정보 저장
+   sqlSessionFactory : sqlSession을 만들기 위함
+   : >> 설정정보(DB접속정보, alias, mapper 위치정보)가 필요함
+ 
+ 
+ 동적쿼리 : 상황에 맞게 특정한 sql을 만들어 낼 수 있는 기능을 제공 
+ex) insert 할 때 이름이 없다면 '이름없음' 이라고 insert 하기 
+1. <choose>  조건에 따라 작성할 sql 문을 선택할 때 사용 
+2. <sql>    반복되는 sql을 따로 작성해서 불러 사용하기 위해 사용
+   <include> 를 이용해서 <sql>에 작성된 sql을 불러서 사용	
+3. <if> 특정 조건일 때 실행할 문장을 작성
+
+제목검색, 이름검색, 제목+이름 검색
+searchBoard()
+검색어 ,검색 종류
+
+String keyword
+
+검색타입 type, 각각의 검색 타입별로, keyword를 해당 파라미터로 넣어줌
+1. 제목검색  title
+2. 이름검색 name
+3. 제목+이름검색 title,name
+4. 내용검색 content
+
+
+1. select * from board where 1=0  or title = 'title'
+2. select * from board where 1=0  or name = 'name'
+3. select * from board where 1=0  or title = 'title or name = 'name'
+4. select * from board where 1=0  or content = 'content'
+5. select * from board where 1=0  or 1=1
+
+title like '%title' 'title' 이라는 문자열을 포함하면 모두 선택
+Mybatis Mapper 내여서 #{}를 사용하는 경우
+#{TITLE}  >> 문자열일 경우 '제목'
+#{NUM} >> 숫자일 경우 5
+
+

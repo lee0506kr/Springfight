@@ -3,10 +3,24 @@ Spring : core,context,jdbc
 MyBatis : mybatis, mybatis-spring
 oracle : ojdbc
 
-실습목적:
+실습 목적:
 MyBatis를 이용해서 만든 DAO를 스프링 컨테이너에 bean으로 등록해서 사용하기
 
-1.bean으로 등록해야 할 목록 
-	dataSource : DB접속정보 저장
-	sqlSessionFactory : sqlSession을 만들기 위함
-	: >> 설정정보(DB접속정보, alies, mapper 위치정보)가 필요함
+1. bean으로 등록해야 할 목록
+   dataSource : DB접속정보 저장
+   sqlSessionFactory : sqlSession을 만들기 위함
+   : >> 설정정보(DB접속정보, alias, mapper 위치정보)가 필요함
+ 
+ 
+ 동적쿼리 : 상황에 맞게 특정한 sql을 만들어 낼 수 있는 기능을 제공 
+ex) insert 할 때 이름이 없다면 '이름없음' 이라고 insert 하기 
+1. <choose>  조건에 따라 작성할 sql 문을 선택할 때 사용 
+2. <sql>    반복되는 sql을 따로 작성해서 불러 사용하기 위해 사용	
+
+
+
+
+
+
+
+

@@ -1,0 +1,28 @@
+1. Maven 설정
+   Spring : core, context, jdbc
+   Mybatis : Mybatis, Mybatis-spring
+   oracle : ojdbc
+   
+2. 패키지 만들기 
+   dao : 작성할 Dao의 interface
+   dao.mapper : 작성할 Dao에서 사용할 sql을 포함하는 mapper.xml
+           1) ******mapper의 namespace는 매퍼의 짝궁 인터페이스 경로로 작성
+           2) mapper안에  sql 들의 id는 인터페이스의 메서드이름과 일치해야 한다.
+                                인터페이스의 메서드가 호출되면 일치하는 이름의 sql을 이용해서 실행한다.   
+            
+3. spring 컨테이너 설정파일 작성
+   dataSource : db접속정보
+   sqlSessionFactory : mybatis를 이용한 DAO 작성을 위해 bean 등록
+   boardDao : mybatis-spring에서 제공하는 MapperFactoryBean 을 이용한
+              정형화된 dao를 생성(개발자가  dao 인터페이스를 구현하지 않고도 메서드 사용가능)            
+            
+4. Test            
+	
+            
+            
+            
+            
+            
+            
+            
+            
