@@ -1,0 +1,35 @@
+목표 
+Service 객체를 스프링 컨테이너에 등록해서 사용하기 
+
+MemberService
+field
+  private MemberDao;
+method
+   List<Member> getMemberList() : 모든회원 정보 가져오기 
+
+
+Maven Dependency 설정
+Spring : core,context,jdbc,aop
+oracle : ojdbc
+MyBatis : mybatis,myBatis-spring
+aspectj : aspectjrt,aspectjweaver
+
+
+패키지
+dao : dao interface 모음
+dao.mapper : mybatis mapper 모음
+service : 서비스 관련 클래스 모음
+test : 테스트 실행 클래스
+aop : aop 적용에 필요한 클래스 모음
+
+
+
+
+
+
+
+
++서비스에 있는 메서드가 호출되면 로그남기기 
+서비스가 실행되었습니다.
+서비스가 종료되었습니다. 
+콘솔에 출력하고, 로그 남기는 방법도 같이 할거에요 

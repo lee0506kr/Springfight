@@ -27,4 +27,19 @@ after : target 정상종료/비정상 종료 여부에 상관없이 실행,
 		따라서, after-returning, after-thowing 과 순서의 계연성이 있는 프로그래밍을 하면 안된다.
 		
 
-around : 
+around : target 앞 뒤로 실행 될 코드를 정의
+
+aop 적용시키기
+-핵심기능 구현을 위한 인터페이스 작성
+-핵심기능이 구현될 클래스(Target)를 작성, Target은 인터페이스를 구현(implements)한다.
+-advice 작성(Aspect)
+-Spring 성정파일 작성
+ :타겟 bean으로 등록
+ :advice 모듈 bean 등록
+ :aop 설정(joinpoint 설정 및 pointcut)
+ 
+ 
+ 타켓 반환 값 및 예외 객체 받아서 처리하기
+ 
+ 정상종료 되었을 때 : 반환값 > after-returning
+ 비정상 종료 되었을 때 : 예외객체 > after-throwing

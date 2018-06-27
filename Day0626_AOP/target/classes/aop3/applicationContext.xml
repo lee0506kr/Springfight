@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+		<!-- 1.target, advice 모듈 bean으로 등록 -->
+		<context:component-scan base-package="aop3"></context:component-scan>
+		<!-- aop:config 설정을 할건데 annotation으로 할 것임을 선언 -->
+		<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+		<!-- 설정할 때 필요한 것??
+			언제, advice를 적용시킬지에 대한 정의 : pointcut
+		    각 advice들이 적용될 위치(before,after 등) 정하기
+		 -->
+		
+		
+		
+		
+</beans>

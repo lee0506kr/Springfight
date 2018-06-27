@@ -8,9 +8,7 @@ public class AopTest {
 		ApplicationContext context
 		 = new GenericXmlApplicationContext("aop2/applicationContext.xml");
 		//boy.doSomething();
-		Person girl = context.getBean("girl", Person.class); 
-		girl.doSomething();
-		
-		
+		Person boy= context.getBean("boy", Person.class); 
+		boy.doSomething();
 	}
 }

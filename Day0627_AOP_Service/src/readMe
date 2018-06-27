@@ -1,0 +1,76 @@
+목표 
+Service 객체를 스프링 컨테이너에 등록해서 사용하기 
+
+MemberService
+field
+  private MemberDao;
+method
+   List<Member> getMemberList() : 모든회원 정보 가져오기 
+
+Maven Dependency 설정
+Spring : core,context,jdbc,aop
+oracle : ojdbc
+MyBatis : mybatis,myBatis-spring
+aspectj : aspectjrt,aspectjweaver
+
+패키지
+dao : dao interface 모음
+dao.mapper : mybatis mapper 모음
+service : 서비스 관련 클래스 모음
+test : 테스트 실행 클래스 모음 
+aop : aop 적용에 필요한 클래스 모음
+
+해야할일 
+- Dao 만들기 (MyBatis를 이용해서)
+- 서비스 구현하기 (Service Interface 상속받아서) 
+- 서비스에 AOP 적용하기 
+
++서비스에 있는 메서드가 호출되면 로그남기기 
+서비스가 실행되었습니다.
+서비스가 종료되었습니다. 
+콘솔에 출력하고, 로그 남기는 방법도 같이 할거에요 
+
+
+log4j
+자바기반의 로깅(프로그램 동작 기록을 남기기) 유틸리티 
+로그를 화면이나 파일로 출력할 수 있게 해준다. 
+
+출력 레벨 설정 가능
+FATAL
+ERROR
+WARN
+INFO
+DEBUG
+TRACE
+
+출력(화면에 표시하거나, 파일로 남길 때)할 때, 원하는 레벨의 로그만 기록할 수 있다.  
+단, 해당 레벨보다 높은 레벨의 로그는 모두 표시
+
+
+설정 파일 구성
+ appender : 출력 형태 설정
+      - 파일출력(파일위치, 파일 생성조건 등등)
+      - 콘솔출력
+ layout
+      - 출력 패턴 정의 (로그를 어떤 패턴으로 남길지 정의)
+ 	메시지, 출력 클래스, 출력 시간 등이 표시가 되는데, 어떠한 모양으로 출력할지 결정      
+
+
+ logger
+	- 특정 패키지(라이브러리)에 대한 출력 레벨 설정
+	
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
