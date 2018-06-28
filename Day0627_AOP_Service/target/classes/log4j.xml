@@ -11,31 +11,31 @@
 
 
 	<!-- 파일출력 , 날짜별로 로그파일 새로 생성 -->
-<!-- 	<appender name="filelog" class="org.apache.log4j.DailyRollingFileAppender"> -->
-<!-- 		<param name="Threshold" value="ERROR"/> -->
-<!-- 		<param name="File" value="c:/LOG/error.log" /> -->
-<!-- 		<param name="Append" value="true" /> -->
-<!-- 		<param name="DatePattern" value="'.'yyyy-MM-dd"/> -->
-<!-- 		<layout class="org.apache.log4j.PatternLayout"> -->
-<!-- 			<param name="ConversionPattern" value="%d %p [%c{5}] %m [%X{userid}]%n" /> -->
-<!-- 		</layout> -->
-<!-- 	</appender> -->
+	<appender name="filelog" class="org.apache.log4j.DailyRollingFileAppender"> 
+		<param name="Threshold" value="ERROR"/>
+		<param name="File" value="c:/LOG/service.log" />
+		<param name="Append" value="true" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %p [%c{5}] %m [%X{userid}]%n" />
+		</layout>
+	</appender>
 	
 	<!-- 에러만 기록 남기는 로그파일 생성하는 appender -->
-<!-- 	<appender name="errfile" class="org.apache.log4j.DailyRollingFileAppender"> -->
-<!-- 		<param name="File" value="c:/LOG/error.log" /> -->
-<!-- 		<param name="Append" value="true" /> -->
-<!-- 		<param name="DatePattern" value="'.'yyyy-MM-dd"/> -->
-<!-- 		<layout class="org.apache.log4j.PatternLayout"> -->
-<!-- 			<param name="ConversionPattern" value="%d %p [%c{5}] %m [%X{userid}]%n" /> -->
-<!-- 		</layout> -->
+	<appender name="errfile" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="c:/LOG/error.log" />
+		<param name="Append" value="true" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %p [%c{5}] %m [%X{userid}]%n" />
+		</layout>
 	
-<!-- 	</appender> -->
+	</appender>
 	
-<!-- 	<logger name="org.springframework"> -->
-<!-- 		<level value="INFO" /> -->
-<!-- 		<appender-ref ref="errfile"/> -->
-<!-- 	</logger> -->
+	<logger name="org.springframework">
+		<level value="INFO" />
+		<appender-ref ref="errfile"/>
+	</logger>
 
 <!-- 	<logger name="org.mybatis"> -->
 <!-- 		<level value="INFO"></level> -->
@@ -47,12 +47,12 @@
 	
 	<logger name="aop">
 		<level value="INFO" />
-		<appender-ref ref="console"/>
+		<appender-ref ref="filelog"/>
 	</logger>
 
 	<!-- 기본 출력 설정 -->
 	<root>
-		<level value="WARN" />
+		<level value="INFO" />
 		<appender-ref ref="console" />
 	</root>
 

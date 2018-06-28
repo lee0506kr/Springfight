@@ -23,6 +23,6 @@
 	<bean id = "memberDao" class= "org.mybatis.spring.mapper.MapperFactoryBean">
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
 		<property name="mapperInterface" value="dao.MemberDao"></property>
-	</bean>
+	</bean> 
 	
 </beans>
