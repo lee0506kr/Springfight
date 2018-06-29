@@ -1,0 +1,103 @@
+Controller 반환값 정리
+Controller의 반환값은 
+ModelAndView , String , void  등이 있다. 
+
+ModelAndView : 화면 정보, 데이터 둘 다 가지고 있을 때 사용 
+ex) @RequestMapping("/hello.do")
+	public ModelAndView foo() {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("msg", "Hello!! world!!");
+		mav.setViewName("hello.jsp");
+		return mav;
+	}
+
+String : 화면 정보만 필요 할 때
+반환형이 문자열이면 해당하는 문자열을 'view Name'으로 간주
+메서드의 파라미터에 Model을 선언하면, 문자열 반환하면서, 데이터도 화면으로 넘기기 가능
+
+ex) 
+    @RequestMapping("/test.do")
+	public String test(Model model) {
+		System.out.println("test.do 요청입니다.3333");
+		//이렇게 .jsp 등 경로 없이 
+		//사용하기 위해서 viewResolver 설정 바꿔줘야 함
+		model.addAttribute("msg", "test요청 받았습니다!");
+		return "test";
+	}
+
+
+void : 둘다 필요 없을 때 (요청에서 .do를 제외한 요청이름을 view Name으로 간주)
+
+Controller에서 요청 파라미터 얻어오기 
+
+@RequestMapping("/test")
+public String test(int grade){
+	
+}
+요청 예)  /test?grade=1
+요청 파라미터의 이름과 메서드 파라미터의 이름을 맞춰주면 된다. 
+
+요청 파라미터 이름과 컨트톨러 메서드의 파라미터 이름이 맞지 않을 경우 
+@RequestParam(value = "grade") int g
+를 이용해서 매핑 시켜 줄 수 있다.
+파라미터가 없을 경우 @RequestParam의 defaultValue 속성을 주면 기본 파라미터 값을 만들어 낼수 있다.
+  
+ex)@RequestMapping("/studentList")
+	public String studentListByGrade(Model model,
+			@RequestParam(value="grade",defaultValue="1" )int g) {
+
+addStudent.jsp 에서 학생정보를 입력받아서
+DB에 저장하는 요청을 처리!!
+
+해야할 것:
+1. addStudent.jsp 작성
+2. /student/addStudent 요청을 처리하는 handler 작성(컨트롤러 메서드)
+3. dao, mapper, service 수정
+
+//insert 후에 자동 생성된 번호가져오기 
+MyBatis 기능을 활용하면 됩니다!!
+
+<selectKey keyProperty="num" order="BEFORE" resultType="int">
+			select student_seq.nextval from dual
+</selectKey>
+를 이용하면 파라미터로 넘어온 객체에 비어있는 key속성을 채워 넣어준다. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

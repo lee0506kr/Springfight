@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.StudentDao">
+	<insert id="insertStudent" parameterType="map">
+		<!-- insert 시 자동 생성되는 key 가져오기 -->
+	
+	<selectKey keyProperty="num" order="BEFORE" resultType="int">
+		select student_seq.nextval from dual
+	</selectKey>
+	
+		insert 
+		  into student 
+		       (snum,sname,sgrade)
+		values (#{num},#{name},#{grade})
+	</insert>
+	<update id="updateStudent" parameterType="map">
+		update student
+		   set sname = #{name},
+		       sgrade = #{grade}
+		 where snum = #{num}   
+	</update>
+	<delete id="deleteStudent" parameterType="int">
+		delete 
+		  from student
+		 where snum = #{num}  
+	</delete>
+	<select id="selectOne" parameterType="int" resultType="map">
+		select *
+		  from student
+		 where snum = #{num}  
+	</select>
+	
+	<select id="selectAll" resultType="map">
+		select * 
+		  from student
+	</select>
+	
+	<select id="selectStudentsByGrade" parameterType="int" resultType="map">
+		select * 
+		  from student
+		 where sgrade = #{grade}
+	</select>
+	
+
+</mapper>
+
+
+
+
+
+
+
