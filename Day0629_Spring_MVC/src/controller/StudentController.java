@@ -21,7 +21,6 @@ public class StudentController {
 	@Autowired
 	private StudentService service;
 	
-	@RequestMapping("/studentList")
 	public String StudentList(Model model,@RequestParam(value = "grade",defaultValue="1") int g) {
 //		/student/studentList.do?grade=2
 //		System.out.println("studentList.do 진입합니다!!");
@@ -49,11 +48,7 @@ public class StudentController {
 		//dao는 insert
 		
 		service.addStudent( name, grade);
-		
-		
-		
-		
-		
+			
 		return "redirect:studentList?grade="+grade;
 	}
 
