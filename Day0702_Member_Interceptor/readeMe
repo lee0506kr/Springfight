@@ -47,12 +47,92 @@ main
 
 
 
+********Controller에서 요청 파라미터 받아오기 **********
+파라미터의 이름과 model 멤버의 이름이 같으면(setter의 이름이 같으면)
+해당 파라미터를 멤버의 값으로 매핑 시켜준다. 
+
+Map으로 받아오기 
+컨트롤러의 메서드에 요청 파라미터를    Map으로 받아 오려면, 
+메서드에  Map<String,Object> 파라미터를 하나 추가하고 파라미터 앞에
+@RequestParam 을 붙여 준다. 
+그러면 요청 파라미터의 이름이 key, 값이 value 인 map을 얻어올 수 있다.
+
+ex)   public String login(@RequestParam Map<String,Object> param){
+				....중략....
+				param.get("key");
+      } 
+-------------------------------------------------------------------
+RedirectAttributes
+Spring MVC controller의 메서드의 반환형이 String일 경우
+반환 값은 'view name', 이경우 화면으로 이동하는 기본 방법은 forward
+redirect로 화면 전환이 필요할 경우 'redirect:[요청url]'의 형태로 반환하면 된다. 
+
+ex)/main 요청을  redirect 하고 싶을 경우
+      
+      public String login(){
+      	...중략...
+      	return "redirect:main";
+      }
+      
+Redirect 시, 속성값을 보내고 싶을 때 RedirectAttributes 객체를 사용
+  -1. 컨트롤러 메서드에 RedirectAtrributes 를 파라미터로 선언
+  -2. 인자로 넘어온       RedirectAtrributes의 'addFlashAttribute()' 를 이용해 
+              속성 추가
+  ex) public String login(RedirectAttributes ra){
+  			...중략...
+  			
+  			ra.addFlashAttribute("msg","로그인 실패");
+  			
+  			...중략...
+  			
+  			return "redirect:login";
+      }            
+ 
+-------------------------------------------------------
+aop 적용
+만들어져 있는 aop적용..
+transaction 적용하기 
+transaction : 요청작업의 단위
+ex)회원가입 기능이 있다. 
+  회원가입기능은 사용자가 입력한 id,이름, 이메일 등을 테이블에 저장하고, 
+ 게시판에 자동으로 가입인사글을 남김
+ 
+'지정한 여러 단위 기능이 모두 정상적으로 동작했을 때 만, 요청을 처리
+하나라도 정상동작 하지 않으면 취소 처리'
+
+boardDao, insertBoard()
+
+MemberController join() transaction aop 적용
 
 
-**********Controller에서 요청 파라미터 받아오기****************
-파라미터의 이름과 model 멤버의 이름이 같으면 (getter 의 이름이 같으면)
-해당 파라미터를 멤버로 값으로 매핑 시켜준다.
-Map으로 받아오기
+aop 적용하기
+advice 적용하기 
+1. spring설정파일 - namespace - tx namespace 추가
+
+
+
+
+
+
+
+
+ 
+           
+
+
+
+
+       
+      
+      
+  
+
+
+
+
+
+
+
 
 
 

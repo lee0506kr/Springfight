@@ -9,7 +9,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<insert id="insertMember" parameterType="member">
 		insert into member
-		values(#{id},#{pw},#{name},#{email},member_seq.nextval,sysdate)
+		values(member_seq.nextval,#{id},#{pw},#{name},#{email},sysdate)
 	</insert>
 	<update parameterType="member" id="updateMember"> update member set pw = #{pw},
 		name = #{name}, email = #{email} where id = #{id} </update>
