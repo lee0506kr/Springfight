@@ -1,0 +1,36 @@
+Spring : core,context,jdbc,aop,test,web,webmvc
+myBatis : mybatis, mybatis-spring
+aspectj : aspectjrt,aspectjweaver
+oracle : ojdbc
+test: junit
+jstl : jstl
+
+요청을 통해서 화면을 보는 것이 아니라 데이터 얻어오기 
+
+컨트롤러의 메서드에 @ResponseBody 를 붙여주면
+응답이 viewName이 아니라 text/html 타입으로 처리 
+
+ @ResponseBody가 없는 메서드에서의 결과(문자열) 처리
+ :반환되는 문자열을 view 정보로 인식하고, 
+ viewResolver가 반환 문자열을 view name으로 처리  
+
+ @ResponseBody 가 있는 경우 MessageConverter 라는 객체가 
+ 반환값을 문자열로 변환
+
+
+1. dependency : jackson-databind 추가 
+2. servlet-context.xml  <mvc:annotation-driven/> 추가
+3. 데이터를 반환하고자 하는 메서드 위에 @ResponseBody 추가 
+
+**전체 memberList 를 json{} 형태로 화면에 출력**
+
+
+
+
+
+
+
+
+
+
+

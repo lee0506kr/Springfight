@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+
+<configuration>
+
+	<environments default="development">
+		<environment id="development">
+
+			<transactionManager type="MANAGED">
+			</transactionManager>
+
+			<dataSource type="UNPOOLED">
+				<property value="oracle.jdbc.driver.OracleDriver"
+					name="driver" />
+				<property value="jdbc:oracle:thin:@localhost:1521:XE"
+					name="url" />
+				<property value="lee5656kr" name="username" />
+				<property value="qwer4512" name="password" />
+
+			</dataSource>
+		</environment>
+	</environments>
+
+	<mappers>
+		<mapper resource="dao/messageMapper.xml" />
+	</mappers>
+
+
+
+</configuration>

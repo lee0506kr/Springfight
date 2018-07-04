@@ -24,8 +24,7 @@ public class MessageController {
 		
 	@RequestMapping("/messageList")
 	public String MessageList(Model model,@RequestParam(value="page",defaultValue= "1" ) int pageNumber) {
-		
-		
+	
 		model.addAttribute("viewData",service.getMessageList(pageNumber));
 		
 		
@@ -59,8 +58,6 @@ public class MessageController {
 		
 		model.addAttribute(service.deleteMessage(id, password));
 
-		
-		
 		return "redirect:messageList";
 	}
 	
