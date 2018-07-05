@@ -12,21 +12,41 @@ import model.Reply;
 public class ReplyService {
 	@Autowired
 	private ReplyDao replyDao;
-	
 
-	
-	public List<Reply> getBoardReply(int boardNum){
+	public List<Reply> getBoardReply(int boardNum) {
 		return replyDao.selectByBoardNum(boardNum);
 	}
 
 	public boolean addReply(Reply reply) {
-		if(replyDao.insertReply(reply)>0) {
+		if (replyDao.insertReply(reply) > 0) {
 			return true;
-		}else {
+		} else {
 			return false;
 		}
 	}
-	
-	
-	
+
+	public boolean removeReply(int replyNum) {
+
+		int result = replyDao.deleteReply(replyNum);
+
+		if (result > 0) {
+			return true;
+		} else {
+			return false;
+		}
+
+	}
+
+	public boolean modifyReply(Reply reply) {
+
+		if (replyDao.updateReply(reply) > 0) {
+			return true;
+		} else {
+			return false;
+		}
+
+	}
+
+
+
 }
