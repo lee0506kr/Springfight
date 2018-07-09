@@ -1,0 +1,155 @@
+게시판 만들기
+게시글CRUD
+게시글쓰기 (파일업로드)
+게시글수정
+게시글삭제
+게시글조회(댓글,파일 다운로드)
+--------기능-----------
+게시글목록보기 :페이징처리 포함
+새글쓰기
+상세글보기
+글 수정
+글 삭제
+-------화면---------- 
+boardList.jsp
+boardWrite.jsp (파일업로드)
+boardView.jsp (파일다운로드, 댓글)
+boardModify.jsp
+boardCheckPass.jsp
+result.jsp
+-----------데이터-----------
+파일 업로드:
+게시글마다 파일 업로드 
+
+
+------------요청정리 -------------------
+/board
+	/boardList 			 : 게시글 목록보기
+	/view      			 : 게시글 상세보기 
+	/write,method = get  : 게시글 작성 양식 요청 
+	/write,method = post : 게시글 작성 요청
+	/modifyForm   		 : 수정양식 요청
+	/modify		         : 수정요청
+	/delete 			 : 게시글 삭제요청	
+	/boardCheckPassForm  : 비밀번호 확인 양식 요청
+	/boardCheckPass 	 : 비밀번호 확인 요청
+    /download            : 첨부파일 다운로드 요청
+
+/replies 
+	 댓글 등록      /replies   method :post
+	 댓글 수정      /replies/{replyNum} method : post
+	 댓글 삭제      /replies/{replyNum} method : delete
+	 댓글 목록      /replies/all/{boardNum} method : get
+
+
+service 메서드 정리
+getBoardList(Map<Strinng,Object> param,int page): Map<String,Object>
+readBoard(int num) : Map<String,Object> : 게시글 하나 정보 가져오기,readCount 증가 
+getBoard(int num) : Map<String,Object> : 게시글 하나 정보 조회
+writeBoard(Map<String,Object> board,MultipartFile file) : boolean
+modifyBoard(Map<String,Object> board) : boolean
+removeBoard(int num) : boolean
+checkPass(Map<String,Object> param) : boolean
+getAttachFile(int num) : File
+
+
+boardDao 수정사항
+selecOne 할 때 첨부파일 있으면 같이 가져오기 
+
+num을 기준으로 게시글 조회할 때, 첨부파일이 잇으면 첨부파일도 같이 조회
+ex)
+num  title  name email writedate  ........ fullname
+ 1    제목1   홍길동   ..com    12/14/11        asdfadf-asfdasdf-asdf_asdf.jpg   
+ 1    제목1   홍길동   ..com    12/14/11        
+
+join을 이용해서 조회 
+
+파일업로드 수정사항
+1. web.xml
+   dispatcher servlet 설정에  multipar-config 추가
+   
+2. servlet-context.xml
+   multipartResolver  bean 추가 
+   
+3. BoardController.java
+   /write 처리하는 컨트롤러 메서드에 첨부파일(multipartfile)받도록
+   파라미터에 MultipartFile 추가
+
+
+댓글
+게시글 상세보기 했을 때,
+게시글 페이지 뜨고 나면, 해당하는 게시글의 댓글도 같이 조회 하기 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
