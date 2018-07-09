@@ -43,7 +43,7 @@
 		</table>
 		<br><br><br>
 		<input type="button" value = "수정"
-		 onclick="open_win('board?command=board_check_pass_form&num=${board.NUM}','update')">
+		 onclick="open_win('boardCheckPass?num=${board.NUM}','update')">
 		<input type="button" value = "삭제"
 		onclick="open_win('boardCheckPass?num=${board.NUM}','delete')">
 		<input type="button" value = "목록"

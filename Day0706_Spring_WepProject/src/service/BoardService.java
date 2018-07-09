@@ -19,9 +19,15 @@ public interface BoardService {
 
 	public List<Map<String, Object>> getAllBoard();
 
-	public boolean deleteBoard(Map<String, Object> board);
+
 	
 	public Map<String, Object> getOneBoard(int num);
+
+
+	public boolean deleteBoard(int num);
+	
+	
+	public boolean modifyBoard(Map<String,Object> board);
 	
 	
 	

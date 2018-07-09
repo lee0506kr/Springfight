@@ -5,9 +5,9 @@
 	// update : 팝업화면에서 계속 요청진행이 아니라 큰화면에서 요청을 진행 하도록 하는 기능
 	//delete : 삭제요청 만들면됨
 	if(window.name=="update"){
-		window.opener.parent.location.href="boardupdate&num=${param.num}";	
+		window.opener.parent.location.href="boardModify?num=${param.num}";	
 	}else if(window.name=="delete"){
-		window.opener.parent.location.href="pwCheck&num=${param.num}";
+		window.opener.parent.location.href="delete?num=${param.num}";
 	}
 	window.close();	
 </script>

@@ -64,19 +64,90 @@ public class BoardController {
 	}
 	
 	@RequestMapping("/boardCheckPass")
-	public String BoardDeleteForm(Model model, int num, String pw) {
+	public String BoardDeleteForm(Model model, int num) {
 
 		return "boardCheckPass";
+	
 	}
 	
 	
 	@RequestMapping("/board_check_pass")
-	public String BoardDelete(Model model,@RequestParam Map<String, Object> board) {
+	public String checkpass(Model model,int num) {
+
+		if(service.getOneBoard(num) != null) {
+			System.out.println("board_check_pass: 123");
+			return "checkSuccess";
+		}else {
+			System.out.println("board_check_pass : 234");
+			model.addAttribute("msg","비밀번호가 틀려습니다.");
+			return "boardCheckPass";
+		}
+	
+	}
+	
+	
+	@RequestMapping("/delete")
+	public String boardDelte(int num, Model model) {
+		String msg ="";
+		String url ="";
+		
+		boolean reuslt = service.deleteBoard(num);
+		if(reuslt) {
+			msg = "삭제 성공";
+			url ="boardList";
+			
+		}else {
+			
+			msg = "삭제 실패";
+			url ="boardView";
+	
+		}
+		
+		model.addAttribute("msg",msg);
+		model.addAttribute("url",url);
+		return "result";
+		
+	}
+	
+	
+	
+	@RequestMapping("/boardModify")
+	public String BoardModifyForm(Model model, int num) {
+
+		model.addAttribute("board",service.getOneBoard(num));
+		
+		return "boardModify";
+	}
+	
+	
+	@RequestMapping("/update")
+	public String BoardModify(Model model,@RequestParam Map<String, Object> board,int num) {
+
+		String msg ="";
+		String url ="";
+	
+		
+		boolean reuslt = service.modifyBoard(board);
+		
+		if(reuslt) {
+			
+			
+			msg = "수정 성공";
+			url = "boardView?num="+num;
+			
+		}else {
+			
+			msg = "수정 실패";
+			url = "boardModify";
+	
+		}
+		
+		model.addAttribute("msg",msg);
+		model.addAttribute("url",url);
+		
+		return "result";
 		
 		
-		service.deleteBoard(board)
-		
-		return "redirect:boardList";
 	}
 	
 	

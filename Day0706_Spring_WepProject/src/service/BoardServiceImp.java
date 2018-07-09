@@ -24,9 +24,6 @@ public class BoardServiceImp implements BoardService {
 	@Override
 	public boolean writeBoard(Map<String, Object> board) {
 
-		
-		
-		
 		int result = dao.insertBoard(board);
 
 		if (result > 0) {
@@ -37,16 +34,11 @@ public class BoardServiceImp implements BoardService {
 	}
 
 	@Override
-	public boolean deleteBoard(Map<String, Object> board) {
+	public boolean deleteBoard(int num) {
 
-		Map<String, Object> params = new HashMap<>();
-		String num= (String) board.get("num");
-		String pass =(String) board.get("pass");
+		int result = dao.deleteBoard(num);
 		
-		params = dao.selectOne(num);
-		
-
-		if (result > 0) {
+		if (result  > 0) {
 			return true;
 		} else {
 			return false;
@@ -132,5 +124,19 @@ public class BoardServiceImp implements BoardService {
 		
 		return dao.selectOne(num);
 	}
+
+	@Override
+	public boolean modifyBoard(Map<String, Object> board) {
+	
+		int result = dao.updateBoard(board);
+		
+		if (result > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	
 
 }
