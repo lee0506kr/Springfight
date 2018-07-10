@@ -35,6 +35,9 @@
 	<h2><%=session.getAttribute("userid")%>
 		님 반갑습니다.!
 	</h2>
+		<h2><%=session.getAttribute("name")%>
+		님 반갑습니다.!
+	</h2>
 	<button onclick="location.href='updateForm'">내 정보 수정</button>
 	<button onclick="location.href='logout'">로그아웃</button>
 

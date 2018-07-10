@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
@@ -98,12 +99,19 @@ public class MemberController {
 		/*System.out.println("userid :" + params.get("id") );
 		System.out.println("userpw :" + params.get("pw") );*/
 		
+		Map<String, Object> member = service.getMemberById(id);
 		
 		boolean result = service.login(id,pw);
+		
+		String name = (String)member.get(Constants.Member.NAME);
+		
+		session.setAttribute("name",name);
+		
 		
 		if(result) {
 			//세션에 아이디를 담고 메인으로 이동
 			session.setAttribute("userid", id);
+			
 			return "redirect:boardList";
 		}else {
 			//로그인 실패니까.. 로그인 페이지로 이동
