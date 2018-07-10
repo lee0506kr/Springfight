@@ -10,8 +10,8 @@
 </head>
 <body>
 	<form action="update" method="post">
-		<p><label>아이디: <input type="text" name = "userid" readonly="readonly" value="${member.ID}"></label></p>
-		<p><label>비&nbsp;&nbsp;&nbsp;번: <input type="password" name = "userpw"></label></p>
+		<p><label>아이디: <input type="text" name = "id" readonly="readonly" value="${member.ID}"></label></p>
+		<p><label>비&nbsp;&nbsp;&nbsp;번: <input type="password" name = "pw"></label></p>
 		<p><label>이&nbsp;&nbsp;&nbsp;름: <input type="text" name = "name" value="${member.NAME}"></label></p> 
 		<p><label>이메일: <input type="text" name = "email" value=""></label></p>
 		<p><label>가입일: <input type="text" name = "regDate" readonly="readonly" value="${member.REG_DATE}"></label></p>

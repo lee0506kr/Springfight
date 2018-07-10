@@ -46,7 +46,7 @@ public class MemberController {
 		
 		if(service.join(member)) {
 			//회원가입성공
-			return "redirect:boarList";
+			return "redirect:boardList";
 		}else {
 			return "redirect:join";
 		}
@@ -65,13 +65,24 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/update")
-	public String update() {
-		return null;
+	public String update(@RequestParam Map<String,Object> member ,Model model) {
+		
+		
+		model.addAttribute("url","boardList");
+		
+		if(service.modifyMember(member)) {
+			model.addAttribute("msg", "수정완료");
+		}else {
+			model.addAttribute("msg", "수정실패");
+		}
+		
+		
+		return "result";
 	}
 
 	@RequestMapping(value  = "/login" , method = RequestMethod.GET)
 	public String loginForm() {
-		return "boarList";
+		return "boardList";
 	}
 	
 	
@@ -88,8 +99,7 @@ public class MemberController {
 		System.out.println("userpw :" + params.get("pw") );*/
 		
 		
-		boolean result 
-		= service.login(id,pw);
+		boolean result = service.login(id,pw);
 		
 		if(result) {
 			//세션에 아이디를 담고 메인으로 이동
@@ -108,7 +118,7 @@ public class MemberController {
 			ra.addFlashAttribute("msg","로그인 실패");
 			
 			
-			return "redirect:boarList";
+			return "redirect:boardList";
 		}
 		
 	}

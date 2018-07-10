@@ -11,7 +11,7 @@
 <body>
 	<div class="wrap" align = "center">
 		<h1>게시글 수정</h1>
-		<form name= "frm" action="modify" id = "modifyForm">
+		<form name= "frm" action="update" id = "modifyForm">
 			<input type="hidden" name="NUM" value="${board.NUM}">
 			<table>
 				<tr>

@@ -9,5 +9,6 @@ public interface MemberService {
 	public Map<String , Object>  getMemberById(String id);
 	public boolean join(Map<String , Object> member);
 	public List<Map<String , Object>> selectAll();
+	public boolean modifyMember(Map<String,Object> member);
 	
 }

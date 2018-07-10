@@ -69,4 +69,14 @@ public class MemberServiceImp implements MemberService {
 			return false;
 		}
 	}
+
+	@Override
+	public boolean modifyMember(Map<String, Object> member) {
+		
+		System.out.println("들어오냐?");
+		
+		if (memberDao.updateMember(member) > 0) {
+			return true;
+		}
+		return false;	}
 }
