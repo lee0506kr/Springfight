@@ -96,21 +96,3 @@ public class ReplyController {
 		return replyService.removeReply(replyNum);
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

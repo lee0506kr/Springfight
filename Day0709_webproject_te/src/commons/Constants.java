@@ -12,6 +12,15 @@ public class Constants {
 		public static final String WRITE_DATE = "WRITEDATE";
 	}
 	
+	public static class Member{
+		public static final String ID = "NUM";
+		public static final String PW = "PW";
+		public static final String NAME = "NAME";
+		public static final String EMAIL = "EMAIL";
+		public static final String READ_COUNT = "READCOUNT";
+	
+	}
+	
 	public static class Attach{
 		public static final String FULL_NAME = "FULLNAME";
 		public static final String NUM = "NUM";

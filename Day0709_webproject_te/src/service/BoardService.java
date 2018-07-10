@@ -13,7 +13,7 @@ public interface BoardService {
 	//페이징 처리 항목 포함해서 게시판 목록 가져오기 
 	//게시글 페이지,검색어, 검색타입 등등
 //	getBoardList(Map<Strinng,Object> param,int page): Map<String,Object>
-	public List<Map<String, Object>> getBoardList(Map<String, Object> param,int page);	
+	public Map<String, Object> getBoardList(Map<String, Object> param,int page);	
 //	readBoard(int num) : Map<String,Object> : 게시글 하나 정보 가져오기,readCount 증가
 	public Map<String, Object> readBoard(int num);
 //	getBoard(int num) : Map<String,Object> : 게시글 하나 정보 조회
@@ -30,14 +30,6 @@ public interface BoardService {
 	public File getAttachFile(int num);
 //  첨부파일 저장 및, 파일 이름 만들어 내기
 	public String writeFile(MultipartFile file);
-	
-	public Map<String, Object> getBoardList(int num);
-	
-	public int calPageTotalCount(int totalCount);
-
-	public int getStartPage(int pageNum);
-
-	public int getEndPage(int pageNum);
 	
 	
 	

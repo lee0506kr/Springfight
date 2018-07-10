@@ -15,6 +15,32 @@
 		<property name="prefix" value="/jsp/"></property>
 		<property name="suffix" value=".jsp"></property>
 	</bean>
+	
+	<mvc:interceptors>
+      <mvc:interceptor>
+         <!-- 가로챌 요청 -->
+<!--          <mvc:mapping path="/member/memberList"/> -->
+         
+     
+       
+         <mvc:mapping path="/board/logout"/>
+         <mvc:mapping path="/board/updateForm"/>
+         <mvc:mapping path="/board/update"/>
+         <mvc:mapping path="/board/view"/>
+         <mvc:mapping path="/board/write"/>
+         <mvc:mapping path="/board/download"/>
+         <mvc:mapping path="/board/modifyForm"/>
+         <mvc:mapping path="/board/modify"/>
+         <mvc:mapping path="/board/delete"/>
+         <mvc:mapping path="/board/boardCheckPassForm"/>
+         <mvc:mapping path="/board/boardCheckPass"/>
+
+         <!-- 동작할 인터셉터 -->
+         <ref bean="loginCheckIntercepter"/>
+      </mvc:interceptor>
+   </mvc:interceptors>
+	
+	
 </beans>
 
 

@@ -1,38 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
-
 <mapper namespace="dao.MemberDao">
-
-	<insert id="insertMember" parameterType="member">
-		insert into member
-		values(member_seq.nextval,#{id},#{pw},#{name},#{email},sysdate)
+	
+	<insert id="insertMember" parameterType="map">
+		insert 
+		  into member1
+		 values (#{id},#{pw},#{name},#{email},sysdate)
 	</insert>
-	<update parameterType="member" id="updateMember"> update member set pw = #{pw},
-		name = #{name}, email = #{email} where id = #{id} </update>
 
-	<delete parameterType="string" id="deleteMember"> delete from member where id =
-		#{id} </delete>
-
-	<select id="selectOne" parameterType="string" resultMap="memberMap">
-		select * from member where id = #{id}
-	</select>
-
-	<select id="selectAll" resultMap="memberMap"> select * from member 
+	<update id="updateMember" parameterType="map">
+		update member1
+		   set pw = #{pw},
+		       name = #{name},
+		       email = #{email}
+		 where id = #{id} 
+	</update>
+	
+	<delete id="deleteMember" parameterType="string">
+		delete 
+		  from member1
+		 where id = #{id} 
+	</delete>
+	
+	
+	<select id="selectOne" parameterType="string" resultType="map">
+		select * from member1 where id = #{id}	
 	</select>
 	
-	<resultMap type="member" id="memberMap">
-		<result property="id" column="id"/>
-		<result property="pw" column="pw"/>
-		<result property="name" column="name"/>
-		<result property="email" column="email"/>
-		<result property="regDate" column="reg_date"/>
-	</resultMap>
-
-
-
-
+	<select id="selectAll" resultType="map">
+		select * 
+		  from member1
+	</select>
+	
+<!-- 	<resultMap type="member" id="memberMap"> -->
+<!-- 		<result property="id" column="id"/> -->
+<!-- 		<result property="pw" column="pw"/> -->
+<!-- 		<result property="name" column="name"/> -->
+<!-- 		<result property="email" column="email"/> -->
+<!-- 		<result property="regDate" column="regDate"/> -->
+<!-- 	</resultMap> -->
+	
 </mapper>
+
+
+
+
+
+
+

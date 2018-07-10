@@ -1,8 +1,12 @@
 package controller;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,9 +17,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.View;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import commons.Constants;
 import commons.DownloadView;
 import service.BoardService;
+import service.MemberService;
 
 @Controller
 @RequestMapping("/board")
@@ -24,20 +31,37 @@ public class BoardController {
 	@Autowired
 	BoardService boardService;
 	
+	@Autowired
+	private MemberService service;
 	
+
 //	/boardList 			 : 게시글 목록보기
 	@RequestMapping("/boardList")
-	public String boardList(Model model,@RequestParam(value="page",defaultValue= "1" ) int pageNumber) {
+	public String boardList(Model model,@RequestParam(required=false) String keyword,@RequestParam(defaultValue="0") int type,@RequestParam(defaultValue="1") int page) {
 		
-		List<Map<String, Object>> bList = boardService.boardList();
-		model.addAttribute("boardList", boardService.boardList());
+		/*List<Map<String, Object>> bList = boardService.boardList();
+		//model.addAttribute("boardList", boardService.boardList());
 		System.out.println("bList : " + bList);
-		//model.addAttribute("viewData",boardService.getBoardList(pageNumber));
+		model.addAttribute("boardList", bList);*/
 		
-		model.addAttribute("boardList", bList);
+		Map<String, Object> param = new HashMap<String, Object>();
+		param.put("keyword", keyword);
+		param.put("type", type);
+		
+		
+		//param에 keyword랑, type 넣어주면 됨
+		Map<String, Object> viewData = boardService.getBoardList(param, page);
+		viewData.put("type", type);
+		viewData.put("keyword", keyword);
+		
+		System.out.println("BoardController : "+ viewData);
+		
+		model.addAttribute("viewData",viewData);
 		
 		return "boardList";
 	}
+	
+	
 //	/view      			 : 게시글 상세보기
 	@RequestMapping(value = "/view")
 	public String view(int num,Model model) {
@@ -134,6 +158,13 @@ public class BoardController {
 			return "boardCheckPass"; 	
 		}
 	}		
+	
+	
+	
+	
+	/*--------------*/
+
+	
 }
 
 

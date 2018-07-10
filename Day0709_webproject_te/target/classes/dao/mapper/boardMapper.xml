@@ -11,8 +11,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into board2
 		values (
 		#{NUM}
-		,<include refid="title"/>
-		,<include refid="name"/>
+		,
+		<include refid="title" />
+		,
+		<include refid="name" />
 		,#{PASS}
 		,#{EMAIL}
 		,#{CONTENT}
@@ -21,12 +23,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	<update id="updateBoard" parameterType="map">
 		update board2
-		set title =<include refid="title"/>,
-		name =<include refid="name"/>,
+		set title =
+		<include refid="title" />
+		,
+		name =
+		<include refid="name" />
+		,
 		pass = #{PASS},
 		email = #{EMAIL},
 		readcount = #{READCOUNT},
-		content = #{CONTENT}
+		content =
+		#{CONTENT}
 		where num = #{NUM}
 	</update>
 
@@ -34,48 +41,77 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from board2 where
 		num = #{NUM}
 	</delete>
-	
-	<select id="selectCount" resultType="int">
-   		select count(*) from board1
-   </select>
-   
-    <select id="selectList" resultType="Map" parameterType="map">
-       
-        select * from (select rownum as rnum,b.*  from (select * from board2
-       order by num desc) b ) where rnum between #{firstRow} and #{endRow}
-       
-   </select>
 
 	<select id="selectOne" parameterType="int" resultType="map">
-		select b.* , a.fullname 
-  		  from board2 b left join attach a
-            on  b.num  = a.num
-         where b.num = #{NUM}
+		select b.*
+		, a.fullname
+		from board2 b left join attach a
+		on b.num = a.num
+		where b.num = #{NUM}
 	</select>
 	<select id="selectAll" resultType="map">
-		select b.num, b.title, b.content,b.email,b.name,b.readcount,b.writedate, count(r.replynum) as rcount
-  		  from board2 b left join reply r
-            on b.num = r.boardnum
-         group by (b.num, b.title, b.content,b.email,b.name,b.readcount,b.writedate)
+		select b.num, b.title,
+		b.content,b.email,b.name,b.readcount,b.writedate, count(r.replynum) as
+		rcount
+		from board2 b left join reply r
+		on b.num = r.boardnum
+		group by (b.num, b.title, b.content,b.email,b.name,b.readcount,b.writedate)
 	</select>
-	
+
 	<select id="searchBoard" parameterType="map" resultType="map">
-		select * 
-		  from board2
-		 where 1=0
-		 <if test="TITLE !=null"> or title like '%${TITLE}%' </if>
-		 <if test="NAME !=null"> or name like '%${NAME}%' </if>
-		 <if test="CONTENT !=null"> or name like '%${CONTENT}%' </if>
-		 <if test="type == 0 "> or 1=1 </if>
+		select *
+		from (select rownum as rnum,
+		b1.num,
+		b1.title,
+		b1.content,
+		b1.email,
+		b1.name,
+		b1.readcount,
+		b1.writedate,
+		b1.rcount
+		from ( select b.num,
+		b.title,
+		b.content,
+		b.email,
+		b.name,
+		b.readcount,
+		b.writedate,
+		count(r.replynum) as rcount
+		from board2 b left join reply r
+		on b.num = r.boardnum
+		where 1=0
+		<if test="TITLE !=null"> or title like '%${TITLE}%' </if>
+		<if test="NAME !=null"> or name like '%${NAME}%' </if>
+		<if test="CONTENT !=null"> or name like '%${CONTENT}%' </if>
+		<if test="type == 0 "> or 1=1 </if>
+		group by (b.num, b.title,
+		b.content,b.email,b.name,b.readcount,b.writedate)
+		order by num desc
+		) b1
+		)
+		where rnum between #{firstRow} and #{endRow}
 	</select>
-	
+
+	<select id="totalBoardCount" resultType="int" parameterType="map">
+		select count(*)
+		from board2
+		where 1=0
+		<if test="TITLE !=null"> or title like '%${TITLE}%' </if>
+		<if test="NAME !=null"> or name like '%${NAME}%' </if>
+		<if test="CONTENT !=null"> or name like '%${CONTENT}%' </if>
+		<if test="type == 0 "> or 1=1 </if>
+	</select>
+
+
+
 	<!-- 파일 업로드 후 파일 이름 저장 -->
 	<insert id="insertAttach" parameterType="map">
-		insert into attach (fullname,num,regdate)
-		  values(#{FULLNAME},#{NUM},sysdate)
+		insert into attach
+		(fullname,num,regdate)
+		values(#{FULLNAME},#{NUM},sysdate)
 	</insert>
-	
-	
+
+
 	<sql id="title">
 		<choose>
 			<when test="TITLE != null">
@@ -86,7 +122,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</otherwise>
 		</choose>
 	</sql>
-	<sql id = "name"> 
+	<sql id="name">
 		<choose>
 			<when test="NAME != null">
 				#{NAME}
@@ -96,6 +132,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</otherwise>
 		</choose>
 	</sql>
-	
+
 
 </mapper>
