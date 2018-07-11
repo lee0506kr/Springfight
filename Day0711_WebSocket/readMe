@@ -1,0 +1,28 @@
+1. Websocket Handler 등록하기
+   WebSocketHandler? 
+   연결요청 받아서 연결 처리하고, 메시지 받아서 전달하는 역할 
+   
+   요청이 들어오면 dispatcher servlet이 요청을 받아서 컨트롤러에 요청을 전달하는데
+ 웹소켓으로 들어오는 메시지 이거나, 연결이 요청이면 중간에서 요청을 가로채서 Handler가  처리 
+ 
+ dependency Spring websocket 추가 
+ 
+2. stomp.js를 통한 메시지 처리하기  
+ Stomp.js - 컨트롤러 쪽에서 웹소켓 메시지 전달을 받을 수 있게 처리
+          - 클라이언트로 메시지 전달할 때도 효율적으로 url로 구분하여 메시지 전송가능
+          
+          
+          
+          
+          
+ 
+ 
+ 
+   
+   
+   
+   
+   
+   
+   
+    
