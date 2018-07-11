@@ -22,6 +22,7 @@ public class MyHandler extends TextWebSocketHandler {
 	
 	private List<WebSocketSession> connectedUser;
 	private Map<String, WebSocketSession> usersMap;
+	
 	public MyHandler() {
 		connectedUser = new ArrayList<WebSocketSession>();
 		usersMap = new HashMap<String, WebSocketSession>();
@@ -41,6 +42,7 @@ public class MyHandler extends TextWebSocketHandler {
 		connectedUser.add(session);
 			
 	}
+	
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 		System.out.println("TextWebSocketHandler : 메시지 받음");
