@@ -1,0 +1,73 @@
+디펜던시 설정
+spring security : core, web, cofig
+ 
+로그인 처리 스프링 시큐리티로 하기... 요청 넘어가는거 확인만...하기 
+로그인하고, 인증처리 되는 과정 확인, 인증되었을 때 컨트롤러가 요청받는거 확인
+
+>>intercepter나 filter에서 구현하면 구현할수 있는 기능들을 이미 구현해 놓은것
+>>어떤 요청을 거를건지 결정.... 스프링 설정파일에 등록
+
+스프링 시큐리티 설정은 root-context에 설정 혹은 따로 
+security-context.xml 만드셔도 됩니다. 
+
+설정파일에 작성해주어야 하는 내용
+<security:http></security:http> : 처리할 요청에 대한 명시, 권한 설정
+
+<security:intercept-url pattern="/" access="permitAll"/>
+ : 권한별 url 설정  access: hasRole('권한'), hasAnyRole('권한','권한','권한','권한')
+<security:access-denied-handler error-page=""/> 
+: 요청이 거부(요청권한이 없음) 되었을 시에 실행 할 url
+<security:csrf/> 
+: 사이트 간 요청 위조(또는 크로스 사이트 요청 위조, 영어: Cross-site request forgery, CSRF) 요청 방지
+<security:form-login/>
+: 로그인 폼에 대한 설정 , 로그인 페이지 지정, 로그인 시 사용할 사용자 이름, 사용자 비밀번호 파라미터 이름 등록
+: 스프링 시큐리티가 폼 인증처리를 하기 위해서 필요하다.
+	form-login 속성값....
+	login-page="" : 로그인 페이지 주소 지정
+	login-processing-url="" :  로그인 성공인 경우 호출할 주소 지정
+	authentication-failure-url="" 로그인 실패인 경우에 호출할 주소지정
+	username-parameter="" : 폼에서 받아올 사용자이름 파라미터 지정
+	password-parameter="" : 폼에서 받아올 사용자 비번 파라미터 지정
+ 
+
+
+
+<authentication-manager></authentication-manager> 
+: 위 작업을 위한 bean 등록
+
+
+use-expressions="true" 속성중에 access 설정할 때 표현식으로 사용하겠다. 
+
+
+
+
+
+**권한 별로 접속 가능한 url 설정하는 것이 목표**
+권한 이름은 'ROLE_권한'
+ROLE_USER , ROLE_ADMIN, ROLE_MANAGER 등등...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

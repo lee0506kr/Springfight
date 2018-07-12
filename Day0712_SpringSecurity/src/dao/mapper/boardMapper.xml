@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.BoardDao">
+
+	<insert id="insertBoard" parameterType="map">
+		<selectKey order="BEFORE" keyProperty="NUM" resultType="int">
+			select board_seq.nextval from dual
+		</selectKey>
+		insert into board
+		values (
+		#{NUM}
+		,
+		<include refid="title" />
+		,
+		<include refid="name" />
+		,#{PASS}
+		,#{EMAIL}
+		,#{CONTENT}
+		,0
+		,sysdate)
+	</insert>
+	<update id="updateBoard" parameterType="map">
+		update board
+		set title =
+		<include refid="title" />
+		,
+		name =
+		<include refid="name" />
+		,
+		pass = #{PASS},
+		email = #{EMAIL},
+		readcount = #{READCOUNT},
+		content =
+		#{CONTENT}
+		where num = #{NUM}
+	</update>
+
+	<delete id="deleteBoard" parameterType="int">
+		delete from board where
+		num = #{NUM}
+	</delete>
+
+	<select id="selectOne" parameterType="int" resultType="map">
+		select b.*
+		, a.fullname
+		from board b left join attach a
+		on b.num = a.num
+		where b.num = #{NUM}
+	</select>
+	<select id="selectAll" resultType="map">
+		select b.num, b.title,
+		b.content,b.email,b.name,b.readcount,b.writedate, count(r.replynum) as
+		rcount
+		from board b left join reply r
+		on b.num = r.boardnum
+		group by (b.num, b.title, b.content,b.email,b.name,b.readcount,b.writedate)
+	</select>
+
+	<select id="searchBoard" parameterType="map" resultType="map">
+		select *
+		from (select rownum as rnum,
+		b1.num,
+		b1.title,
+		b1.content,
+		b1.email,
+		b1.name,
+		b1.readcount,
+		b1.writedate,
+		b1.rcount
+		from ( select b.num,
+		b.title,
+		b.content,
+		b.email,
+		b.name,
+		b.readcount,
+		b.writedate,
+		count(r.replynum) as rcount
+		from board b left join reply r
+		on b.num = r.boardnum
+		where 1=0
+		<if test="TITLE !=null"> or title like '%${TITLE}%' </if>
+		<if test="NAME !=null"> or name like '%${NAME}%' </if>
+		<if test="CONTENT !=null"> or name like '%${CONTENT}%' </if>
+		<if test="type == 0 "> or 1=1 </if>
+		group by (b.num, b.title,
+		b.content,b.email,b.name,b.readcount,b.writedate)
+		order by num desc
+		) b1
+		)
+		where rnum between #{firstRow} and #{endRow}
+	</select>
+
+	<select id="totalBoardCount" parameterType="map" resultType="int">
+		select count(*)
+		  from board
+		 where 1=0
+		<if test="TITLE !=null"> or title like '%${TITLE}%' </if>
+		<if test="NAME !=null"> or name like '%${NAME}%' </if>
+		<if test="CONTENT !=null"> or name like '%${CONTENT}%' </if>
+		<if test="type == 0 "> or 1=1 </if>
+	</select>
+
+
+
+	<!-- 파일 업로드 후 파일 이름 저장 -->
+	<insert id="insertAttach" parameterType="map">
+		insert into attach
+		(fullname,num,regdate)
+		values(#{FULLNAME},#{NUM},sysdate)
+	</insert>
+
+
+	<sql id="title">
+		<choose>
+			<when test="TITLE != null">
+				#{TITLE}
+			</when>
+			<otherwise>
+				'제목없음'
+			</otherwise>
+		</choose>
+	</sql>
+	<sql id="name">
+		<choose>
+			<when test="NAME != null">
+				#{NAME}
+			</when>
+			<otherwise>
+				'이름없음'
+			</otherwise>
+		</choose>
+	</sql>
+
+
+</mapper>
